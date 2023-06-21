@@ -82,11 +82,6 @@ public class ClassicPlotManager extends SquarePlotManager {
 
     @Override
     public boolean unClaimPlot(@NonNull Plot plot, @Nullable Runnable whenDone, @Nullable QueueCoordinator queue) {
-        setWallFilling(plot.getId(), classicPlotWorld.WALL_FILLING.toPattern(), null, queue);
-        if (classicPlotWorld.PLACE_TOP_BLOCK && (!classicPlotWorld.WALL_BLOCK.isAir() || !classicPlotWorld.WALL_BLOCK
-                .equals(classicPlotWorld.CLAIMED_WALL_BLOCK))) {
-            setWall(plot.getId(), classicPlotWorld.WALL_BLOCK.toPattern(), null, queue);
-        }
         TaskManager.runTask(whenDone);
         return true;
     }
@@ -813,10 +808,6 @@ public class ClassicPlotManager extends SquarePlotManager {
 
     @Override
     public boolean claimPlot(@NonNull Plot plot, @Nullable QueueCoordinator queue) {
-        final BlockBucket claim = classicPlotWorld.CLAIMED_WALL_BLOCK;
-        if (classicPlotWorld.PLACE_TOP_BLOCK && (!claim.isAir() || !claim.equals(classicPlotWorld.WALL_BLOCK))) {
-            return setWall(plot.getId(), claim.toPattern(), null, queue);
-        }
         return true;
     }
 

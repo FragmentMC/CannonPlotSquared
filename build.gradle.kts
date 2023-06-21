@@ -69,7 +69,6 @@ subprojects {
         plugin<JavaLibraryPlugin>()
         plugin<MavenPublishPlugin>()
         plugin<ShadowPlugin>()
-        plugin<SpotlessPlugin>()
         plugin<SigningPlugin>()
 
         plugin<EclipsePlugin>()
@@ -97,16 +96,6 @@ subprojects {
 
     configurations.all {
         attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 17)
-    }
-
-    spotless {
-        java {
-            licenseHeaderFile(rootProject.file("HEADER.txt"))
-            target("**/*.java")
-            endWithNewline()
-            trimTrailingWhitespace()
-            removeUnusedImports()
-        }
     }
 
     java {
